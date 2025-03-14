@@ -1,0 +1,69 @@
+import pygame
+import sys
+
+# Inicializar Pygame
+pygame.init()
+
+# Configuración de pantalla
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Warzone Tactics Prototype")
+
+# Colores
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+
+# Cargar personaje
+player_size = 40
+player_x, player_y = WIDTH // 2, HEIGHT // 2
+player_speed = 5
+
+# Enemigo
+enemy_size = 40
+enemy_x, enemy_y = 100, 100
+enemy_speed = 2
+
+def draw_player(x, y):
+    pygame.draw.rect(screen, RED, (x, y, player_size, player_size))
+
+def draw_enemy(x, y):
+    pygame.draw.rect(screen, BLACK, (x, y, enemy_size, enemy_size))
+
+# Bucle principal
+timer = pygame.time.Clock()
+while True:
+    screen.fill(WHITE)
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+    
+    # Controles del jugador
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player_x -= player_speed
+    if keys[pygame.K_RIGHT]:
+        player_x += player_speed
+    if keys[pygame.K_UP]:
+        player_y -= player_speed
+    if keys[pygame.K_DOWN]:
+        player_y += player_speed
+    
+    # Movimiento enemigo simple (persiguiendo al jugador)
+    if enemy_x < player_x:
+        enemy_x += enemy_speed
+    if enemy_x > player_x:
+        enemy_x -= enemy_speed
+    if enemy_y < player_y:
+        enemy_y += enemy_speed
+    if enemy_y > player_y:
+        enemy_y -= enemy_speed
+    
+    # Dibujar elementos
+    draw_player(player_x, player_y)
+    draw_enemy(enemy_x, enemy_y)
+    
+    pygame.display.update()
+    timer.tick(30)
