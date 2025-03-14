@@ -1,0 +1,15 @@
+warzone-tactics/
+├── docs/               # Documentación y referencias
+├── assets/             # Modelos 3D, texturas, sonidos
+├── src/                # Código fuente principal
+│   ├── main.py         # Archivo principal del juego
+│   ├── player.py       # Lógica del personaje
+│   ├── ai.py           # IA de enemigos
+│   ├── physics.py      # Sistema de colisiones y balística
+│   ├── ui.py           # Interfaz de usuario
+│   ├── hacking.py      # Mecánica de ciberataques
+│   └── settings.py     # Configuración del juego
+├── tests/              # Pruebas automatizadas
+├── requirements.txt    # Dependencias de Python
+├── README.md           # Descripción del proyecto
+└── .gitignore          # Archivos a ignorar en Git
